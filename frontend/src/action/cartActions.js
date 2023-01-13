@@ -31,5 +31,5 @@ export const saveShippingAddress = (data) => (dispatch, getState) => {
         type: CART_SAVE_SHIPPING_ADDRESS,
         payload: data
     })
-    localStorage.setItem('shippingAddress', JSON.stringify(getState(data)))
+    localStorage.setItem('shippingAddress', JSON.stringify(data))
 }
