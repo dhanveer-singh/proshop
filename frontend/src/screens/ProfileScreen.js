@@ -23,7 +23,6 @@ const ProfileScreen = ({ location, history }) => {
     const { userInfo } = userLogin;
 
     const userUpdateProfile = useSelector(state => state.userUpdateProfile);
-    console.log({ userUpdateProfile });
     const { success } = userUpdateProfile;
 
     const orderListMy = useSelector(state => state.orderListMy);
@@ -87,7 +86,7 @@ const ProfileScreen = ({ location, history }) => {
                 {loadingOrders ? <Loader /> : errorOrders
                     ? <Message variant='danger'>{errorOrders}</Message>
                     : (
-                        <Table striped orderd hover responsive className="table-sm">
+                        <Table striped bordered hover responsive className="table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -102,17 +101,19 @@ const ProfileScreen = ({ location, history }) => {
                                 {orders.map(order => (
                                     <tr key={order._id}>
                                         <td>{order._id}</td>
-                                        <td>{order.createdAt.subString(0, 10)}</td>
+                                        <td>{order.createdAt.substring(0, 10)}</td>
                                         <td>{order.totalPrice}</td>
-                                        <td>{order.isPaid ? order.paidAt.subString(0, 10) : (
+                                        <td>{order.isPaid ? order.paidAt.substring(0, 10) : (
                                             <i className="fas fa-times" style={{ color: 'red' }}></i>
                                         )}</td>
-                                        <td>{order.isDelivered ? order.deliveredAt.subString(0, 10) : (
+                                        <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : (
                                             <i className="fas fa-times" style={{ color: 'red' }}></i>
                                         )}</td>
                                         <td>
                                             <LinkContainer to={`/order/${order._id}`}>
-                                                <Button variant="light">Details</Button>
+                                                <Button className='btn-sm' variant='light'>
+                                                    Details
+                                                </Button>
                                             </LinkContainer>
                                         </td>
                                     </tr>
